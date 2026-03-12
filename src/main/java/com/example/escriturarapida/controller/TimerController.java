@@ -10,9 +10,13 @@ public class TimerController {
 
     private Timeline timer;
     private double time = 20;
-
+    private Runnable onTimeEnd;
     private Label timeLabel;
     private Arc timeArc;
+
+    public void setOnTimeEnd(Runnable onTimeEnd){
+        this.onTimeEnd = onTimeEnd;
+    }
 
     public TimerController(Label timeLabel, Arc timeArc){
         this.timeLabel = timeLabel;
@@ -32,8 +36,11 @@ public class TimerController {
 
                     if(time <= 0){
                         timer.stop();
-                    }
 
+                        if(onTimeEnd != null){
+                            onTimeEnd.run();
+                        }
+                    }
                 })
         );
 

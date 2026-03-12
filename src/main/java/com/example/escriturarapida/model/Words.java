@@ -18,7 +18,7 @@ public class Words implements IWord {
 
         try{
 
-            InputStream is = getClass().getResourceAsStream("/com/example/escriturarapida/words.txt");
+            InputStream is = getClass().getResourceAsStream("/com/example/escriturarapida/words/words.txt");
             assert is != null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
@@ -43,11 +43,6 @@ public class Words implements IWord {
         currentWord = words[index];
 
         return currentWord;
-    }
-
-    @Override
-    public Boolean validateWord() {
-        return null;
     }
 
     @Override

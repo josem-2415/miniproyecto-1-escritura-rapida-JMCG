@@ -10,6 +10,12 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.net.URL;
+
+
+
 public class GameController {
 
     @FXML
@@ -39,11 +45,31 @@ public class GameController {
     @FXML
     private Label levelUpLabel;
 
+    private MediaPlayer reproductorAudio;
+
+    private static final String RUTA_AUDIO =
+            "/com/example/escriturarapida/media/DonOmarDile.mp3";
+
     private WordController wordController;
     private TimerController timerController;
     private LevelController levelController;
 
     private GameState gameState;
+
+    private void mediaConfig() {
+        try {
+            URL urlAudio = getClass().getResource(RUTA_AUDIO);
+            if (urlAudio != null) {
+                Media mediaAudio = new Media(urlAudio.toExternalForm());
+                reproductorAudio = new MediaPlayer(mediaAudio);
+                reproductorAudio.setCycleCount(MediaPlayer.INDEFINITE);
+                reproductorAudio.setVolume(0.5);
+                reproductorAudio.play();
+            }
+        } catch (Exception e) {
+            System.out.println("Archivo de audio no encontrado. Continuando sin música.");
+        }
+    }
 
     @FXML
     public void initialize(){
@@ -55,7 +81,7 @@ public class GameController {
         levelController = new LevelController(gameState);
 
         wordTextField.requestFocus();
-
+        mediaConfig();
 
         // Primera palabra
         wordLabel.setText(wordController.newWord());

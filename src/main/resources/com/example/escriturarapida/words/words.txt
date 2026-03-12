@@ -4,6 +4,6 @@ Manzana
 Computador
 Teclado
 Pantalla
-Programacion
+Programación
 Java
 Internet

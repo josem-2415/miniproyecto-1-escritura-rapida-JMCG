@@ -27,6 +27,7 @@ public class GameState {
     }
 
     public void levelUp(){
-        level++;
+        level++
+        ;
     }
 }
