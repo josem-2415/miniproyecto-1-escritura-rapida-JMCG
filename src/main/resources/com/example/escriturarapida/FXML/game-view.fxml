@@ -8,6 +8,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #140800;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escriturarapida.controller.GameController">
    <Label fx:id="streakValueLabel" layoutX="323.0" layoutY="455.0" opacity="0.69" text="00" textFill="#8c8c8c">
       <font>
@@ -15,11 +17,11 @@
       </font>
    </Label>
 
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#331400" height="73.0" layoutX="60.0" layoutY="36.0" stroke="#331400" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="481.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#260a00" height="73.0" layoutX="60.0" layoutY="36.0" stroke="#260a00" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="481.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cd2200" height="30.0" layoutX="225.0" layoutY="58.0" stroke="#cd2200" strokeType="INSIDE" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="83.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#140800" height="146.0" layoutX="60.0" layoutY="127.0" stroke="#331400" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="481.0" />
 
-   <TextField fx:id="wordTextField" alignment="CENTER" blendMode="SRC_ATOP" cache="true" layoutX="116.0" layoutY="293.0" prefHeight="46.0" prefWidth="370.0" promptText="ESCRIBE AQUI..." style="-fx-border-radius: 30; -fx-background-radius: 20; -fx-background-color: #331400; -fx-border-color: #FF5C33; -fx-border-width: 1; -fx-text-fill: #ffffff;" AnchorPane.bottomAnchor="161.39999999999998" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="114.39999999999998" AnchorPane.topAnchor="293.0">
+   <TextField fx:id="wordTextField" alignment="CENTER" blendMode="SRC_ATOP" cache="true" layoutX="116.0" layoutY="293.0" prefHeight="46.0" prefWidth="370.0" promptText="ESCRIBE AQUI..." style="-fx-border-radius: 30; -fx-background-radius: 20; -fx-background-color: #260a00; -fx-border-color: #cd2200; -fx-border-width: 1; -fx-text-fill: #ffffff;" AnchorPane.bottomAnchor="161.39999999999998" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="114.39999999999998" AnchorPane.topAnchor="293.0">
       <font>
          <Font name="Arial" size="14.0" />
       </font>
@@ -77,12 +79,6 @@
       </font>
    </Label>
 
-   <Label layoutX="263.0" layoutY="455.0" opacity="0.69" text="RACHA:" textFill="#ff5c33">
-      <font>
-         <Font name="Arial Bold" size="14.0" />
-      </font>
-   </Label>
-
    <Rectangle fx:id="levelUpBox" arcHeight="30" arcWidth="30" fill="#000000" height="236.0" layoutX="-4.0" layoutY="214.0" visible="false" width="600.0" AnchorPane.bottomAnchor="206.79999999999995" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="214.0" />
 
    <Label fx:id="levelUpLabel" alignment="CENTER" layoutX="-4.0" layoutY="214.0" prefHeight="42.0" prefWidth="600.0" text="¡SUBISTE DE NIVEL!" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="206.8" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.7999999999999545" AnchorPane.topAnchor="214.0">
@@ -92,4 +88,12 @@
       </font>
 
    </Label>
+
+   <Label layoutX="263.0" layoutY="455.0" opacity="0.69" text="RACHA:" textFill="#ff5c33">
+      <font>
+         <Font name="Arial Bold" size="14.0" />
+      </font>
+   </Label>
+
+
 </AnchorPane>

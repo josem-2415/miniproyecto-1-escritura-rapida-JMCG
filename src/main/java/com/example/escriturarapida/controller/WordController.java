@@ -4,10 +4,10 @@ import com.example.escriturarapida.model.Words;
 
 public class WordController {
 
-    private Words words;
+    private final Words words;
 
-    public WordController(){
-        words = new Words();
+    public WordController(int nivel){
+        words = new Words(nivel);
     }
 
     public String newWord(){
@@ -16,5 +16,9 @@ public class WordController {
 
     public boolean validate(String word){
         return words.validateWord(word);
+    }
+
+    public void updateLevel(int nivel){
+        words.setNivel(nivel);
     }
 }

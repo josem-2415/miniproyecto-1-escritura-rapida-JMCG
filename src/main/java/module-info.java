@@ -6,6 +6,7 @@ module com.example.escriturarapida {
 
     opens com.example.escriturarapida to javafx.fxml;
     opens com.example.escriturarapida.controller to javafx.fxml;
+    opens com.example.escriturarapida.view to javafx.fxml;
 
     exports com.example.escriturarapida;
     opens com.example.escriturarapida.model to javafx.fxml;

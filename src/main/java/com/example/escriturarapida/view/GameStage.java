@@ -10,7 +10,7 @@ import java.io.IOException;
 public class GameStage {
     public GameStage(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/example/escriturarapida/game-view.fxml")
+                getClass().getResource("/com/example/escriturarapida/FXML/game-view.fxml")
         );
 
         Parent root = loader.load();

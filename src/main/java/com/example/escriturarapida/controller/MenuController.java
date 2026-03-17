@@ -7,8 +7,14 @@ import javafx.stage.Stage;
 
 public class MenuController {
 
+    @FXML private Button btnPlay;
+    @FXML private Button btnExit;
+
     @FXML
-    private Button btnPlay;
+    private void exitGame() {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     public void initialize(){

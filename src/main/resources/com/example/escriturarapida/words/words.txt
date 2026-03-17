@@ -1,9 +1,0 @@
-Carro
-Pera
-Manzana
-Computador
-Teclado
-Pantalla
-Programación
-Java
-Internet

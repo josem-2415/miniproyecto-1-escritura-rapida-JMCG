@@ -10,18 +10,13 @@ public class MenuStage {
     public MenuStage(Stage stage){
 
         try{
-
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/escriturarapida/menu-view.fxml")
+                    getClass().getResource("/com/example/escriturarapida/FXML/menu-view.fxml")
             );
-
             Parent root = loader.load();
-
             Scene scene = new Scene(root);
-
             stage.setScene(scene);
             stage.show();
-
         }catch(Exception e){
             e.printStackTrace();
         }

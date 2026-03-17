@@ -30,6 +30,7 @@
                 <VBox prefHeight="114.0" prefWidth="401.0" spacing="30.0" style="-fx-background-color: #240b00; -fx-border-color: #3a1a00; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 30;">
                     <children>
                           <Button fx:id="btnPlay" maxWidth="Infinity" style="-fx-background-color: #d13000; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 10;" text="JUEGA AHORA" />
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#exitGame" prefHeight="43.0" prefWidth="338.0" style="-fx-background-color: transparent; -fx-border-width: 2; -fx-border-color: rgba(139,33,0,0.5); -fx-text-fill: rgba(255, 200, 170, 0.8); -fx-font-size: 16px; -fx-font-weight: BOLD; -fx-padding: 12; -fx-border-radius: 10;" text="SALIR DEL JUEGO" />
                     </children>
                 </VBox>
             </children>

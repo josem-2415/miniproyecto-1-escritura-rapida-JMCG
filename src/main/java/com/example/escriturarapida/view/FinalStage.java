@@ -12,20 +12,14 @@ public class FinalStage {
     public FinalStage(Stage stage, GameState gameState){
 
         try{
-
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/escriturarapida/final-view.fxml")
+                    getClass().getResource("/com/example/escriturarapida/FXML/final-view.fxml")
             );
-
             Parent root = loader.load();
-
             FinalController controller = loader.getController();
             controller.setResults(gameState);
-
             Scene scene = new Scene(root);
-
             stage.setScene(scene);
-
         }catch(Exception e){
             e.printStackTrace();
         }
