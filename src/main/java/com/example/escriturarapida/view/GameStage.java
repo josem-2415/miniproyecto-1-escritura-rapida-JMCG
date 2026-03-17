@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Represents the main game view.
+ */
 public class GameStage {
     public GameStage(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(

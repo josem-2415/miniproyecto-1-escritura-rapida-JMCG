@@ -1,6 +1,6 @@
 package com.example.escriturarapida.controller;
 
-import com.example.escriturarapida.model.GameState;
+import com.example.escriturarapida.model.GameModel;
 import com.example.escriturarapida.model.TimerModel;
 import com.example.escriturarapida.view.FinalStage;
 import javafx.animation.FadeTransition;
@@ -16,46 +16,74 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Main controller of the game.
+ * Manages the interaction between model, view, and helper controllers.
+ */
 public class GameController {
 
+    /** Label showing the current word */
     @FXML private Label wordLabel;
+
+    /** Label showing the level */
     @FXML private Label levelLabel;
+
+    /** User input field */
     @FXML private TextField wordTextField;
+
+    /** Visual arc representing time */
     @FXML private Arc timeArc;
+
+    /** Time label */
     @FXML private Label timeLabel;
+
+    /** Streak label */
     @FXML private Label streakValueLabel;
+
+    /** Feedback messages */
     @FXML private Label messageLabel;
     @FXML private Label messageLabel1;
+
+    /** Level-up UI elements */
     @FXML private Rectangle levelUpBox;
     @FXML private Label levelUpLabel;
 
-    private GameState gameState;
+
+    /** Model holding the game state. */
+    private GameModel gameModel;
+
+    /** Timer model managing countdowns. */
     private TimerModel timerModel;
 
+    /** Controller managing word logic. */
     private WordController wordController;
+
+    /** Controller managing level progression. */
     private LevelController levelController;
 
-    @FXML
-    private AudioController audioController;
+    /** Controller for updating UI elements. */
     private UIController uiController;
 
+    /**
+     * Initializes the game by setting up models, controllers, and events.
+     */
     @FXML
     public void initialize(){
 
-        // MODELO
-        gameState = new GameState();
+        // MODEL
+        gameModel = new GameModel();
         timerModel = new TimerModel(20);
 
-        // 🔥 CONTROLADORES
-        wordController = new WordController(gameState.getLevel());
-        levelController = new LevelController(gameState);
-        audioController = new AudioController();
+        // CONTROLLERS
+        wordController = new WordController(gameModel.getLevel());
+        levelController = new LevelController(gameModel);
+        AudioController audioController = new AudioController();
         uiController = new UIController(levelLabel, streakValueLabel);
 
-        // 🔊 audio
+        // MEDIA
         audioController.playBackground();
 
-        // ⏱ timer UI update
+        // TIMER UI UPDATE
         timerModel.setOnTick(() -> {
             timeLabel.setText(String.valueOf((int)Math.ceil(timerModel.getTime())));
             timeArc.setLength((360 * timerModel.getTime()) / timerModel.getMaxTime());
@@ -63,7 +91,7 @@ public class GameController {
 
         timerModel.setOnTimeEnd(this::endGame);
 
-        // 🎮 iniciar juego
+        // START GAME
         wordLabel.setText(wordController.newWord());
         timerModel.startTimer();
 
@@ -71,6 +99,9 @@ public class GameController {
         wordTextField.requestFocus();
     }
 
+    /**
+     * Ends the game and switches to the final view.
+     */
     private void endGame(){
 
         timerModel.stop();
@@ -78,12 +109,17 @@ public class GameController {
         Stage stage = (Stage) wordLabel.getScene().getWindow();
 
         try {
-            new FinalStage(stage, gameState);
+            new FinalStage(stage, gameModel);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Handles validation of the user input.
+     *
+     * @param event action event
+     */
     @FXML
     public void onHandlevalidate(ActionEvent event){
 
@@ -99,25 +135,32 @@ public class GameController {
         wordTextField.clear();
     }
 
+    /**
+     * Logic executed when the user types a correct word.
+     */
     private void handleCorrect(){
 
         showCorrectMessage();
 
-        gameState.addCorrectWord();
+        gameModel.addCorrectWord();
 
         if(levelController.checkLevelUp()){
 
-            uiController.updateLevel(gameState.getLevel());
+            uiController.updateLevel(gameModel.getLevel());
 
-            wordController.updateLevel(gameState.getLevel());
+            wordController.updateLevel(gameModel.getLevel());
 
             timerModel.stop();
             timerModel.decreaseTime(2);
 
             showLevelUpMessage(() -> {
+
+                // CAMBIO DE NIVEL + NUEVA PALABRA
+                String newWord = wordController.changeLevelAndGetWord(gameModel.getLevel());
+                wordLabel.setText(newWord);
+
                 timerModel.reset();
                 timerModel.startTimer();
-                wordLabel.setText(wordController.newWord());
             });
 
         } else {
@@ -126,17 +169,23 @@ public class GameController {
             timerModel.reset();
         }
 
-        uiController.updateStreak(gameState.getCurrentStreak());
+        uiController.updateStreak(gameModel.getCurrentStreak());
     }
 
+    /**
+     * Logic executed when the user types an incorrect word.
+     */
     private void handleIncorrect(){
 
         showIncorrectMessage();
-        uiController.updateStreak(gameState.getCurrentStreak());
+        uiController.updateStreak(gameModel.getCurrentStreak());
 
         endGame();
     }
 
+    /**
+     * Displays a correct answer animation.
+     */
     public void showCorrectMessage(){
 
         messageLabel.setOpacity(1);
@@ -151,6 +200,9 @@ public class GameController {
         fade.play();
     }
 
+    /**
+     * Displays an incorrect answer animation.
+     */
     public void showIncorrectMessage(){
 
         messageLabel1.setOpacity(1);
@@ -165,6 +217,11 @@ public class GameController {
         fade.play();
     }
 
+    /**
+     * Displays a level-up animation.
+     *
+     * @param onFinished action executed after animation ends
+     */
     public void showLevelUpMessage(Runnable onFinished){
         levelUpBox.setOpacity(0);
         levelUpBox.setVisible(true);
