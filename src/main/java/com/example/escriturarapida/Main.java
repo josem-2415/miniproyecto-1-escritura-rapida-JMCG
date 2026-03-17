@@ -1,5 +1,5 @@
 package com.example.escriturarapida;
-import com.example.escriturarapida.view.GameStage;
+import com.example.escriturarapida.view.MenuStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,6 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        new GameStage(primaryStage);
+        new MenuStage(primaryStage);
     }
 }

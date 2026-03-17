@@ -1,4 +1,4 @@
-package com.example.escriturarapida.controller;
+package com.example.escriturarapida.model;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -6,10 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Arc;
 import javafx.util.Duration;
 
-public class TimerController {
+public class TimerModel {
 
     private Timeline timer;
+
     private double time = 20;
+    private double maxTime = 20; // ⬅ tiempo máximo del nivel
+
     private Runnable onTimeEnd;
     private Label timeLabel;
     private Arc timeArc;
@@ -18,7 +21,7 @@ public class TimerController {
         this.onTimeEnd = onTimeEnd;
     }
 
-    public TimerController(Label timeLabel, Arc timeArc){
+    public TimerModel(Label timeLabel, Arc timeArc){
         this.timeLabel = timeLabel;
         this.timeArc = timeArc;
     }
@@ -32,7 +35,7 @@ public class TimerController {
 
                     timeLabel.setText(String.valueOf((int)Math.ceil(time)));
 
-                    timeArc.setLength((360 * time) / 20);
+                    timeArc.setLength((360 * time) / maxTime); // ⬅ usar maxTime
 
                     if(time <= 0){
                         timer.stop();
@@ -53,8 +56,21 @@ public class TimerController {
     }
 
     public void reset(){
-        time = 20;
+        time = maxTime; // ⬅ reinicia con el tiempo actual
         timeArc.setLength(360);
     }
+
+    // ⬇ NUEVO MÉTODO
+    public void decreaseTime(double seconds){
+
+        maxTime -= seconds;
+
+        if(maxTime < 5){
+            maxTime = 5; // límite mínimo
+        }
+
+        time = maxTime;
+    }
 }
+
 

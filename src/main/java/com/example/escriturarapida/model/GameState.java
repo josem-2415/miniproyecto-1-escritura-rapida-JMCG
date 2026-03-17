@@ -1,10 +1,12 @@
 package com.example.escriturarapida.model;
 
-public class GameState {
+public class GameState implements IGameState{
 
     private int level = 1;
     private int correctWords = 0;
-    private int wordsToLevelUp = 5;
+    private int totalWords = 0;
+    private int Streak = 0;
+    private int currentStreak = 0;
 
     public int getLevel() {
         return level;
@@ -14,8 +16,16 @@ public class GameState {
         return correctWords;
     }
 
-    public void addCorrectWord() {
+    public void addCorrectWord(){
+
         correctWords++;
+        totalWords++;
+
+        currentStreak++;
+
+        if(currentStreak > Streak){
+            Streak = currentStreak;
+        }
     }
 
     public void resetCorrectWords() {
@@ -23,11 +33,12 @@ public class GameState {
     }
 
     public int getWordsToLevelUp() {
-        return wordsToLevelUp;
+        return 5;
     }
 
-    public void levelUp(){
-        level++
-        ;
+    public void levelUp(){level++;    }
+
+    public int getCurrentStreak(){
+        return currentStreak;
     }
 }
